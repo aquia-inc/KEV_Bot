@@ -1,6 +1,6 @@
 
 locals {
-  lambda_zip_location = "outputs/iac_test.zip"
+  lambda_zip_location = "outputs/kev_lambda.zip"
 }
 
 resource "null_resource" "install_requests"{
@@ -36,26 +36,27 @@ data "archive_file" "tweepy_zip"{
 
 resource "aws_lambda_layer_version" "requests_layer" {
   filename            = data.archive_file.requests_zip.output_path
-  layer_name          = "Requests-2-28-1-IAC"
+  layer_name          = "Requests-KEV-IAC"
   compatible_runtimes = ["python3.9"]
 }
 
 resource "aws_lambda_layer_version" "tweepy_layer" {
   filename            = data.archive_file.tweepy_zip.output_path
-  layer_name          = "tweepy-4-28-1-IAC"
+  layer_name          = "tweepy-KEV-IAC"
   compatible_runtimes = ["python3.9"]
 }
-data "archive_file" "iac_test" {
+
+data "archive_file" "kev_lambda_zip" {
   type        = "zip"
-  source_file = "${path.module}/iac_test.py"
+  source_file = "${path.module}/kev_lambda.py"
   output_path = local.lambda_zip_location
 }
 
-resource "aws_lambda_function" "test_lambda" {  
-  filename      = data.archive_file.iac_test.output_path
-  function_name = "iac_test"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "iac_test.lambda_handler"
+resource "aws_lambda_function" "kev_lambda" {  
+  filename      = data.archive_file.kev_lambda_zip.output_path
+  function_name = "kev_lambda"
+  role          = aws_iam_role.kev_lambda_role.arn
+  handler       = "kev_lambda.lambda_handler"
   timeout       = 240
   layers        = [aws_lambda_layer_version.requests_layer.arn, aws_lambda_layer_version.tweepy_layer.arn]
 
