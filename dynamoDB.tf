@@ -5,18 +5,13 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
   write_capacity = 1
   hash_key       = "i"
 
-
   attribute {
     name = "i"
     type = "S"
   }
 
-
   ttl {
     attribute_name = "TimeToExist"
     enabled        = false
   }
-
-
-
 }

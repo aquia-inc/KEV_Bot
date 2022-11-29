@@ -4,13 +4,12 @@ locals {
   region        = "us-east-1"
   my_function   = "kev_lambda"
   db_table_name = "OldKevs"
-
 }
+
 
 resource "aws_iam_role_policy" "kev_lambda_policy" {
   name = "kev_lambda_policy"
   role = aws_iam_role.kev_lambda_role.id
-
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -54,16 +53,25 @@ resource "aws_iam_role_policy" "kev_lambda_policy" {
         Action   = "ssm:DescribeParameters"
         Resource = "*"
       }
-
-
-
-
     ]
   })
 }
 
+
+data "aws_iam_policy_document" "kev_lambda_trust" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    effect  = "Allow"
+    principals {
+      type             = "Service"
+      identidentifiers = ["lambda.amazonaws.com"]
+    }
+  }
+}
+
+
 resource "aws_iam_role" "kev_lambda_role" {
   name = "kev_lambda_role"
 
-  assume_role_policy = file("iam/lambda-assume-policy.json")
+  assume_role_policy = data.aws_iam_policy_document.kev_lambda_trust.json
 }
