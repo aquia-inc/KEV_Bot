@@ -1,5 +1,4 @@
 *.zip
-*.hcl
 *.backup
 
 # Byte-compiled / optimized / DLL files

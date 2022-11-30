@@ -50,4 +50,5 @@ jobs:
           DEFAULT_BRANCH: 'main'
           VALIDATE_PYTHON_PYLINT: true
           VALIDATE_TERRAFORM_TFLINT: true
+          TERRAFORM_TFLINT_CONFIG_FILE: ".tflint.hcl"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
