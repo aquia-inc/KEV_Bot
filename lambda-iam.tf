@@ -2,8 +2,6 @@ data "aws_caller_identity" "current" {}
 locals {
   account_id    = data.aws_caller_identity.current.account_id
   region        = "us-east-1"
-  my_function   = "kev_lambda"
-  db_table_name = "OldKevs"
 }
 
 
