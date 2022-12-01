@@ -1,0 +1,46 @@
+name: deploy
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  deploy-terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: INSTALL - python@3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+          aws-region: us-east-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan -input=false -var="api_key=$API_KEY" -var="api_key_secret=$API_KEY_SECRET" -var="access_token=$ACCESS_TOKEN" -var="access_token_secret=$ACCESS_TOKEN_SECRET"
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false -var="api_key=$API_KEY" -var="api_key_secret=$API_KEY_SECRET" -var="access_token=$ACCESS_TOKEN" -var="access_token_secret=$ACCESS_TOKEN_SECRET"
