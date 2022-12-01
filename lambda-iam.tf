@@ -61,8 +61,8 @@ data "aws_iam_policy_document" "kev_lambda_trust" {
     actions = ["sts:AssumeRole"]
     effect  = "Allow"
     principals {
-      type             = "Service"
-      identidentifiers = ["lambda.amazonaws.com"]
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
     }
   }
 }
