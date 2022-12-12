@@ -23,7 +23,8 @@ S3 (if using github actions)
 4. ACCESS_TOKEN  - Twitter Access Token  
 5. ACCESS_TOKEN_SECRET  - Twitter Token Secret  
 ## Modify provider.tf  
-Configure provider.tf to point to a s3 bucket in your aws account
+Configure provider.tf to point to a s3 bucket in your aws account  
+## Push to main
 
 
 
