@@ -25,7 +25,7 @@ S3 (if using github actions)
 ## Modify provider.tf  
 Configure provider.tf to point to a s3 bucket in your aws account  
 ## Push to main
-
+Push requests approved to the main branch will trigger GitHub actions and deploy KEV bot to your AWS account.
 
 
 # How to deploy without github actions  
