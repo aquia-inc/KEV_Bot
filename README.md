@@ -3,7 +3,7 @@
 [![GitHub Super-Linter](https://github.com/aquia-inc/KEV_Bot/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)  
 
 # Description  
-KEV Bot (KB) periodically checks the [CISA Known Exploited Vulnerabilities catalog]((https://www.cisa.gov/known-exploited-vulnerabilities-catalog)) for new entries.  When KB detects a new entry to the catalog, KB tweets an announcement of the new entry.
+KEV Bot (KB) periodically checks the [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) for new entries.  When KB detects a new entry to the catalog, KB tweets an announcement of the new entry.
 
 ## AWS Services Used  
 Event Bridge  
