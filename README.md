@@ -17,7 +17,7 @@ S3 (if using github actions)
 1. Twitter developer account with elevated access  
 2. AWS Account and [Github OIDC configured](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
 ## Configure the following github secrets  
-1. ROLE_TO_ASSUM  - From AWS account KEV Bot will be deployed  
+1. ROLE_TO_ASSUME  - From AWS account KEV Bot will be deployed
 2. API_KEY  - Twitter API KEY  
 3. API_KEY_SECRET  - Twitter API Key Secret  
 4. ACCESS_TOKEN  - Twitter Access Token  
