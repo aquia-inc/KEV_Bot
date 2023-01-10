@@ -2,7 +2,8 @@
 ![image](https://user-images.githubusercontent.com/116001028/211614648-d3fba293-d114-40f6-96a7-b2321e657f37.png)
  
 
-[![GitHub Super-Linter](https://github.com/aquia-inc/KEV_Bot/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)  
+[![GitHub Super-Linter](https://github.com/aquia-inc/KEV_Bot/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter) 
+[![CodeQL](https://github.com/aquia-inc/KEV_Bot/workflows/CodeQL/badge.svg)](https://github.com/aquia-inc/KEV_Bot/actions?query=workflow%3ACodeQL "Code quality workflow status")
 
 # Description  
 KEV Bot (KB) periodically checks the [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) for new entries.  When KB detects a new entry to the catalog, KB tweets an announcement of the new entry.
