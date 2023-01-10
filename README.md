@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/116001028/206883316-e0f82af1-6f41-450c-8c6b-2634a208ea02.png)  
+![image](https://user-images.githubusercontent.com/116001028/211614648-d3fba293-d114-40f6-96a7-b2321e657f37.png)
 
 [![GitHub Super-Linter](https://github.com/aquia-inc/KEV_Bot/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)  
 
