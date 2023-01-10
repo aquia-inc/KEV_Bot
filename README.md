@@ -1,4 +1,6 @@
-<div style="text-align:center">![image](https://user-images.githubusercontent.com/116001028/211614648-d3fba293-d114-40f6-96a7-b2321e657f37.png)</div>
+<p align="center">
+![image](https://user-images.githubusercontent.com/116001028/211614648-d3fba293-d114-40f6-96a7-b2321e657f37.png)
+  </p>
 
 [![GitHub Super-Linter](https://github.com/aquia-inc/KEV_Bot/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)  
 
