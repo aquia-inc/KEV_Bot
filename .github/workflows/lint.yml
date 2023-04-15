@@ -14,8 +14,16 @@ name: Lint Code Base
 # Start the job on pushes to main (includes merging PRs to main)
 # and on all PRs when opened, reopened, and new commits pushed to them
 on:
+  push:
+    branches:
+      - main
   pull_request:
-    branches: [master, main]
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
 
 jobs:
   build:
