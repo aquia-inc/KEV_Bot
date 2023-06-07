@@ -4,6 +4,7 @@ import tweepy
 import os
 import json
 
+
 def seed_the_table():
     api_end = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
     kev_dict = requests.get(api_end).json()
@@ -97,28 +98,29 @@ def post_to_slack(tweets):
     """
 
     # Set the headers for slack HTTP POST
-    headers = {
-        'Content-Type': 'application/json'
-    }
+    headers = {"Content-Type": "application/json"}
 
     url = get_encrypted("slack_webhook_url")
 
     for tweet in tweets:
         payload = {
             "text": "Alert!! ",
-            "attachments": [{
-                "blocks": [{
-                    "type": "section",
-                    "text": {
-                        "type": "plain_text",
-                        "text": tweet
-                    }
-                }]
-            }]
+            "attachments": [
+                {
+                    "blocks": [
+                        {
+                            "type": "section",
+                            "text": {"type": "plain_text", "text": tweet},
+                        }
+                    ]
+                }
+            ],
         }
         # Post to the slack channel
         try:
-            requests.request("POST", url, headers=headers, data=json.dumps(payload).encode('utf-8'))
+            requests.request(
+                "POST", url, headers=headers, data=json.dumps(payload).encode("utf-8")
+            )
             print("Posting to Slack")
         except Exception as e:
             print(e)
