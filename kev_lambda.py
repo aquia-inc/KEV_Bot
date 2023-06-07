@@ -1,7 +1,8 @@
 import boto3
 import requests
 import tweepy
-
+import os
+import json
 
 def seed_the_table():
     api_end = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
@@ -83,5 +84,42 @@ def lambda_handler(event, context):
     if len(tweets) > 0 and len(tweets) < 100:
         tweet(tweets)
         save_new_cves(old_cve_list)
+        post_to_slack(tweets)
 
     return tweets
+
+
+def post_to_slack(tweets):
+    """Posts to slack
+
+    Args:
+        tweets ([list]): Tweets to post to slack
+    """
+
+    # Set the headers for slack HTTP POST
+    headers = {
+        'Content-Type': 'application/json'
+    }
+
+    url = get_encrypted("slack_webhook_url")
+
+    for tweet in tweets:
+        payload = {
+            "text": "Alert!! ",
+            "attachments": [{
+                "blocks": [{
+                    "type": "section",
+                    "text": {
+                        "type": "plain_text",
+                        "text": tweet
+                    }
+                }]
+            }]
+        }
+        # Post to the slack channel
+        try:
+            requests.request("POST", url, headers=headers, data=json.dumps(payload).encode('utf-8'))
+            print("Posting to Slack")
+        except Exception as e:
+            print(e)
+            raise

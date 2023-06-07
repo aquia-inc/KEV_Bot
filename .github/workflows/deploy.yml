@@ -39,8 +39,8 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -input=false -var="api_key=${{ secrets.API_KEY }}" -var="api_key_secret=${{ secrets.API_KEY_SECRET }}" -var="access_token=${{ secrets.ACCESS_TOKEN }}" -var="access_token_secret=${{ secrets.ACCESS_TOKEN_SECRET }}"
+        run: terraform plan -input=false -var="api_key=${{ secrets.API_KEY }}" -var="api_key_secret=${{ secrets.API_KEY_SECRET }}" -var="access_token=${{ secrets.ACCESS_TOKEN }}" -var="access_token_secret=${{ secrets.ACCESS_TOKEN_SECRET }}" -var="slack_webhook_url=${{ secrets.SLACK_WEBHOOK_URL }}"
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false -var="api_key=${{ secrets.API_KEY }}" -var="api_key_secret=${{ secrets.API_KEY_SECRET }}" -var="access_token=${{ secrets.ACCESS_TOKEN }}" -var="access_token_secret=${{ secrets.ACCESS_TOKEN_SECRET }}"
+        run: terraform apply -auto-approve -input=false -var="api_key=${{ secrets.API_KEY }}" -var="api_key_secret=${{ secrets.API_KEY_SECRET }}" -var="access_token=${{ secrets.ACCESS_TOKEN }}" -var="access_token_secret=${{ secrets.ACCESS_TOKEN_SECRET }}" -var="slack_webhook_url=${{ secrets.SLACK_WEBHOOK_URL }}"

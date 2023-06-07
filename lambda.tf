@@ -61,6 +61,3 @@ resource "aws_lambda_function" "kev_lambda" {
   layers        = [aws_lambda_layer_version.requests_layer.arn, aws_lambda_layer_version.tweepy_layer.arn]
   runtime       = "python3.9"
 }
-
-
-
