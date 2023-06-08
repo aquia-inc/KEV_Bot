@@ -1,8 +1,6 @@
 import boto3
 import requests
 import tweepy
-import os
-import json
 
 
 def seed_the_table():
@@ -118,9 +116,7 @@ def post_to_slack(tweets):
         }
         # Post to the slack channel
         try:
-            requests.request(
-                "POST", url, headers=headers, data=json.dumps(payload).encode("utf-8")
-            )
+            requests.post(url, json=payload)
             print("Posting to Slack")
         except Exception as e:
             print(e)
