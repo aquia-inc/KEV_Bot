@@ -95,9 +95,6 @@ def post_to_slack(tweets):
         tweets ([list]): Tweets to post to slack
     """
 
-    # Set the headers for slack HTTP POST
-    headers = {"Content-Type": "application/json"}
-
     url = get_encrypted("slack_webhook_url")
 
     for tweet in tweets:
