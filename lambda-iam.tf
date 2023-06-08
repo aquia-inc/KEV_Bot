@@ -44,7 +44,10 @@ resource "aws_iam_role_policy" "kev_lambda_policy" {
         Action = [
           "ssm:GetParameter"
         ],
-        Resource = "arn:aws:ssm:${local.region}:${local.account_id}:parameter/twitter_*"
+        Resource = [
+          "arn:aws:ssm:${local.region}:${local.account_id}:parameter/twitter_*",
+          aws_ssm_parameter.slack_webhook_url.aws_region
+        ]
       },
       {
         Effect   = "Allow"

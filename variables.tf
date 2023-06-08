@@ -17,3 +17,8 @@ variable "access_token_secret" {
   type      = string
   sensitive = true
 }
+
+variable "slack_webhook_url" {
+  type      = string
+  sensitive = true
+}

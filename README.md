@@ -25,6 +25,7 @@ S3 (if using github actions)
 3. API_KEY_SECRET  - Twitter API Key Secret  
 4. ACCESS_TOKEN  - Twitter Access Token  
 5. ACCESS_TOKEN_SECRET  - Twitter Token Secret  
+6. SLACK_WEBHOOK_URL  - Slack incoming webhook URL to send notifications
 ## Modify provider.tf  
 Configure provider.tf to point to a s3 bucket in your aws account  
 ## Push to main
@@ -40,14 +41,15 @@ Push requests approved to the main branch will trigger GitHub actions and deploy
 4. Python 3 installed  
 5. pip installed and in path 
 6. delete provider.tf from KEV Files
+7. Slack app configured with an incoming webhook
 
 ## Deploy Linux  
 ```bash
-terraform apply -auto-approve -input=false -var="api_key=$TWITTER_API_KEY" -var="api_key_secret=$TWITTER_API_KEY_SECRET" -var="access_token=$TWITTER_ACCESS_TOKEN" -var="access_token_secret=$TWITTER_ACCESS_TOKEN_SECRET”
+terraform apply -auto-approve -input=false -var="api_key=$TWITTER_API_KEY" -var="api_key_secret=$TWITTER_API_KEY_SECRET" -var="access_token=$TWITTER_ACCESS_TOKEN" -var="access_token_secret=$TWITTER_ACCESS_TOKEN_SECRET” -var="slack_webhook_url=$SLACK_WEBHOOK_URL"
 ```  
 ## Deploy Windows cmd
 ```cmd
-terraform apply -auto-approve -input=false -var="api_key=%TWITTER_API_KEY%" -var="api_key_secret=%TWITTER_API_KEY_SECRET%" -var="access_token=%TWITTER_ACCESS_TOKEN%" -var="access_token_secret=%TWITTER_ACCESS_TOKEN_SECRET%”
+terraform apply -auto-approve -input=false -var="api_key=%TWITTER_API_KEY%" -var="api_key_secret=%TWITTER_API_KEY_SECRET%" -var="access_token=%TWITTER_ACCESS_TOKEN%" -var="access_token_secret=%TWITTER_ACCESS_TOKEN_SECRET%” -var="slack_webhook_url=%SLACK_WEBHOOK_URL%"
 ```
 
 
