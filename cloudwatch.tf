@@ -1,8 +1,8 @@
 
 resource "aws_cloudwatch_event_rule" "kev_rate" {
-  name                = "every-two-hours"
-  description         = "launches kev_lambda every two hours"
-  schedule_expression = "rate(2 hours)"
+  name                = "every-half-hour"
+  description         = "launches kev_lambda every half hour"
+  schedule_expression = "rate(30 minutes)"
 }
 
 resource "aws_cloudwatch_event_target" "check_kev" {
