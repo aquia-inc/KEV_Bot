@@ -43,14 +43,14 @@ data "archive_file" "tweepy_zip" {
 resource "aws_lambda_layer_version" "requests_layer" {
   filename            = data.archive_file.requests_zip.output_path
   layer_name          = "Requests-KEV-IAC"
-  compatible_runtimes = ["python3.9"]
+  compatible_runtimes = ["python3.10"]
   source_code_hash    = data.archive_file.requests_zip.output_base64sha256
 }
 
 resource "aws_lambda_layer_version" "tweepy_layer" {
   filename            = data.archive_file.tweepy_zip.output_path
   layer_name          = "tweepy-KEV-IAC"
-  compatible_runtimes = ["python3.9"]
+  compatible_runtimes = ["python3.10"]
   source_code_hash    = data.archive_file.tweepy_zip.output_base64sha256
 }
 
