@@ -38,12 +38,14 @@ resource "aws_lambda_layer_version" "requests_layer" {
   filename            = data.archive_file.requests_zip.output_path
   layer_name          = "Requests-KEV-IAC"
   compatible_runtimes = ["python3.9"]
+  source_code_hash    = filebase64sha256("${data.archive_file.requests_zip.output_path}")
 }
 
 resource "aws_lambda_layer_version" "tweepy_layer" {
   filename            = data.archive_file.tweepy_zip.output_path
   layer_name          = "tweepy-KEV-IAC"
   compatible_runtimes = ["python3.9"]
+  source_code_hash    = filebase64sha256("${data.archive_file.tweepy_zip.output_path}")
 }
 
 data "archive_file" "kev_lambda_zip" {
@@ -53,11 +55,12 @@ data "archive_file" "kev_lambda_zip" {
 }
 
 resource "aws_lambda_function" "kev_lambda" {
-  filename      = data.archive_file.kev_lambda_zip.output_path
-  function_name = "kev_lambda"
-  role          = aws_iam_role.kev_lambda_role.arn
-  handler       = "kev_lambda.lambda_handler"
-  timeout       = 240
-  layers        = [aws_lambda_layer_version.requests_layer.arn, aws_lambda_layer_version.tweepy_layer.arn]
-  runtime       = "python3.9"
+  filename         = data.archive_file.kev_lambda_zip.output_path
+  function_name    = "kev_lambda"
+  role             = aws_iam_role.kev_lambda_role.arn
+  handler          = "kev_lambda.lambda_handler"
+  timeout          = 240
+  layers           = [aws_lambda_layer_version.requests_layer.arn, aws_lambda_layer_version.tweepy_layer.arn]
+  runtime          = "python3.9"
+  source_code_hash = filebase64sha256("${data.archive_file.kev_lambda_zip.output_path}")
 }
