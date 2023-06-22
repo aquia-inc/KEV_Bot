@@ -4,12 +4,18 @@ locals {
 }
 
 resource "null_resource" "install_requests" {
+  triggers = {
+    always_run = timestamp()
+  }
   provisioner "local-exec" {
     command = "pip install requests -t ${path.module}/imports/requests/python"
   }
 }
 
 resource "null_resource" "install_tweepy" {
+  triggers = {
+    always_run = timestamp()
+  }
   provisioner "local-exec" {
     command = "pip install tweepy -t ${path.module}/imports/tweepy/python"
   }
