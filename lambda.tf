@@ -67,6 +67,6 @@ resource "aws_lambda_function" "kev_lambda" {
   handler          = "kev_lambda.lambda_handler"
   timeout          = 240
   layers           = [aws_lambda_layer_version.requests_layer.arn, aws_lambda_layer_version.tweepy_layer.arn]
-  runtime          = "python3.9"
+  runtime          = "python3.10"
   source_code_hash = data.archive_file.kev_lambda_zip.output_base64sha256
 }
