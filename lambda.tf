@@ -45,6 +45,9 @@ resource "aws_lambda_layer_version" "requests_layer" {
   layer_name          = "Requests-KEV-IAC"
   compatible_runtimes = ["python3.9"]
   source_code_hash    = filebase64sha256(data.archive_file.requests_zip.output_path)
+  depends_on = [
+    archive_file.requests_zip
+  ]
 }
 
 resource "aws_lambda_layer_version" "tweepy_layer" {
@@ -52,6 +55,9 @@ resource "aws_lambda_layer_version" "tweepy_layer" {
   layer_name          = "tweepy-KEV-IAC"
   compatible_runtimes = ["python3.9"]
   source_code_hash    = filebase64sha256(data.archive_file.tweepy_zip.output_path)
+  depends_on = [
+    archive_file.tweepy_zip
+  ]
 }
 
 data "archive_file" "kev_lambda_zip" {
@@ -69,4 +75,7 @@ resource "aws_lambda_function" "kev_lambda" {
   layers           = [aws_lambda_layer_version.requests_layer.arn, aws_lambda_layer_version.tweepy_layer.arn]
   runtime          = "python3.9"
   source_code_hash = filebase64sha256(data.archive_file.kev_lambda_zip.output_path)
+  depends_on = [
+    archive_file.kev_lambda_zip
+  ]
 }
