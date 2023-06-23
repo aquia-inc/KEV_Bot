@@ -8,7 +8,7 @@ resource "null_resource" "install_requests" {
     always_run = timestamp()
   }
   provisioner "local-exec" {
-    command = "pip install requests -t ${path.module}/imports/requests/python"
+    command = "pip install requests 'urllib3<2' -t ${path.module}/imports/requests/python"
   }
 }
 
@@ -17,7 +17,7 @@ resource "null_resource" "install_tweepy" {
     always_run = timestamp()
   }
   provisioner "local-exec" {
-    command = "pip install tweepy -t ${path.module}/imports/tweepy/python"
+    command = "pip install tweepy 'urllib3<2' -t ${path.module}/imports/tweepy/python"
   }
 }
 
