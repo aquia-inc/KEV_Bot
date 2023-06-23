@@ -51,9 +51,9 @@ def tweet(n_t):
     access_secret_token = get_encrypted("twitter_access_secret_token_iac")
 
     # Authenticate
-    auth = tweepy.OAuthHandler(api_key, api_secret)
-    auth.set_access_token(access_token, access_secret_token)
-
+    auth = tweepy.OAuth1UserHandler(
+        api_key, api_secret, access_token, access_secret_token
+    )
     # create API Object
     api = tweepy.API(auth)
 
