@@ -77,11 +77,11 @@ def lambda_handler(event, context):
     tweets = []
     for key in vul_dict:
         if key["cveID"] not in old_cve_list:
-            new_tweet = f"{key['cveID']} - {key['vulnerabilityName']} has been added to the KEV catalog."
+            new_tweet = f"{key['cveID']} - {key['vulnerabilityName']} has been added to the KEV catalog.  https://nvd.nist.gov/vuln/detail/{key['cveID']}"
             old_cve_list.append(key["cveID"])
             tweets.append(new_tweet)
     if len(tweets) > 0 and len(tweets) < 100:
-        tweet(tweets)
+        # tweet(tweets)
         save_new_cves(old_cve_list)
         post_to_slack(tweets)
 
