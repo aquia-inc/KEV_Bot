@@ -6,7 +6,10 @@
 [![CodeQL](https://github.com/aquia-inc/KEV_Bot/workflows/CodeQL/badge.svg)](https://github.com/aquia-inc/KEV_Bot/actions?query=workflow%3ACodeQL "Code quality workflow status")
 
 # Description  
-KEV Bot (KB) periodically checks the [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) for new entries.  When KB detects a new entry to the catalog, KB tweets an announcement of the new entry.
+KEV Bot (KB) periodically checks the [CISA Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) for new entries.  When KB detects a new entry to the catalog, KB tweets/slacks an announcement of the new entry.
+
+## Change Notice 
+As a result of changes to Twitter's API policy, Aquia's implementation of KEV Bot will exclusively slack announcements of new KEV entries. 
 
 ## AWS Services Used  
 Event Bridge  

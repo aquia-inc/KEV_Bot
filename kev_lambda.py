@@ -105,7 +105,7 @@ def post_to_slack(tweets):
                     "blocks": [
                         {
                             "type": "section",
-                            "text": {"type": "plain_text", "text": tweet},
+                            "text": {"type": "mrkdwn", "text": tweet},
                         }
                     ]
                 }
