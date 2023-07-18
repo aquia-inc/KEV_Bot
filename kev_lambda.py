@@ -81,7 +81,10 @@ def lambda_handler(event, context):
             old_cve_list.append(key["cveID"])
             tweets.append(new_tweet)
     if len(tweets) > 0 and len(tweets) < 100:
-        # tweet(tweets)
+        try:
+            tweet(tweets)
+        except:
+            pass
         save_new_cves(old_cve_list)
         post_to_slack(tweets)
 
@@ -105,7 +108,7 @@ def post_to_slack(tweets):
                     "blocks": [
                         {
                             "type": "section",
-                            "text": {"type": "plain_text", "text": tweet},
+                            "text": {"type": "mrkdwn", "text": tweet},
                         }
                     ]
                 }
