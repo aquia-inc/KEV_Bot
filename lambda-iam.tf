@@ -22,7 +22,7 @@ resource "aws_iam_role_policy" "kev_lambda_policy" {
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ],
-        Resource = "arn:aws:logs:${local.region}:${local.account_id}:log-group:/aws/lambda/${aws_lambda_function.kev_lambda.function_name}:*"
+        Resource = "arn:aws:logs:${data.aws_region.current}:${local.account_id}:log-group:/aws/lambda/${aws_lambda_function.kev_lambda.function_name}:*"
         Effect   = "Allow"
       },
       {
@@ -45,7 +45,6 @@ resource "aws_iam_role_policy" "kev_lambda_policy" {
           "ssm:GetParameter"
         ],
         Resource = [
-          "arn:aws:ssm:${local.region}:${local.account_id}:parameter/twitter_*",
           aws_ssm_parameter.slack_webhook_url.arn
         ]
       },
